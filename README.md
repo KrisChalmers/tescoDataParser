@@ -2,7 +2,10 @@
 A Class and script that parses the JSON file that is provided from Tesco personal data portability request. Data is parsed to 3 csv files. 
 * online orders (no product information, just item quantities)
 * trips - details of shopping trips i.e. till transactions)
-* products - the itemisation relating to the trips - these have the common field of "trip_key" the above are all saved as instance variable
+* products - the itemisation relating to the trips - these have the common field of "trip_key" the above are all saved as instance variable.
+
+Find out more about Tesco Data Portability here: 
+    https://www.tesco.com/data-portability/en-GB
 
 ## Running from commandline
 This can be run from the commandline as follows:
