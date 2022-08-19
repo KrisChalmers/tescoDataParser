@@ -1,5 +1,8 @@
 
 
+from socket import TIPC_SRC_DROPPABLE
+
+
 class TescoParser:
     """A class that handles the parsing and storage 
     """
@@ -51,8 +54,9 @@ class TescoParser:
          * A dataframs of items purchased.
         These have a common reference of trip_ke
         """
-        import pandas as pd
         import json
+
+        import pandas as pd
         fulljs = self.fulljs
         orders = fulljs["Order"]
 
@@ -86,8 +90,9 @@ class TescoParser:
         #purch = fulljs["Purchase"] #creates purchase 
         #df = pd.read_json(json.dumps(purch[1]))                                      # df is the trips
         #df["product"].apply(lambda x: pd.read_json(json.dumps(x)))[90]               # the df is the producs form trip 90
-        import pandas as pd
         import json
+
+        import pandas as pd
 
         fulljs = self.fulljs
         purch = fulljs["Purchase"] #creates purchase 
@@ -138,6 +143,7 @@ class TescoParser:
 
 if __name__ == "__main__":
         import sys
+
         # check arguments
         arg = sys.argv[1:]
 
@@ -156,9 +162,18 @@ if __name__ == "__main__":
                 online_orders, trips, products = parser.parse()
 
                 # push the dataframes to disk at the pwd
-                online_orders.to_csv(filepath_out.format("online_orders"), index=False)
-                trips.to_csv(filepath_out.format("trips"), index=False)
-                products.to_csv(filepath_out.format("products"), index=False)
+                online_filename = filepath_out.format("online_orders")
+                print("Saving {}...".format(online_filename))
+                online_orders.to_csv(online_filename, index=False)
+
+                trips_filename = filepath_out.format("trips")
+                print("Saving {}...".format(trips_filename))
+                trips.to_csv(trips_filename, index=False)
+                
+                products_filename = filepath_out.format("products")
+                print("Saving {}...".format(products_filename))
+                products.to_csv(products_filename, index=False)
+                
                 
 
 
