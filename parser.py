@@ -147,18 +147,18 @@ if __name__ == "__main__":
         elif len(arg) == 1:
             filepath = arg[0]
             # if it doesn't end .json - do nothing
-            if filepath[:-5].lower() != ".json":
+            if filepath[-5:].lower() != ".json":
                 print("files should end in .json, it ends in {}".format(filepath[:-5]))
             else:
                 # init parser, parse and collect the 3 dataframes
-                filepath_out = filepath[:-5] + "_{}" + filepath[-5]
+                filepath_out = filepath[:-5] + "_{}.csv"
                 parser = TescoParser(filepath)
                 online_orders, trips, products = parser.parse()
 
                 # push the dataframes to disk at the pwd
-                online_orders.to_csv(filepath_out.format("online_orders"))
-                trips.to_csv(filepath_out.format("trips"))
-                products.to_csv(filepath_out.format("products"))
+                online_orders.to_csv(filepath_out.format("online_orders"), index=False)
+                trips.to_csv(filepath_out.format("trips"), index=False)
+                products.to_csv(filepath_out.format("products"), index=False)
                 
 
 
