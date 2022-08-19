@@ -11,6 +11,7 @@ This can be run from the commandline as follows:
 
 ## Use in python
 The class can be used as follows:
+
     from parser import TescoParser
     filepath = "Tesco-Customer-Data.json"
     parser = TescoParser(filepath)
