@@ -132,6 +132,7 @@ class TescoParser:
             products = pd.concat([products, prod_df])
         
         #instance variables
+        trips["timeStamp"] = trips["timeStamp"].apply(lambda x: x.tz_localize(None))
         self.products = products
         self.trips = trips
 
