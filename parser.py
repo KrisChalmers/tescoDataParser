@@ -1,7 +1,5 @@
 
 
-from socket import TIPC_SRC_DROPPABLE
-
 
 class TescoParser:
     """A class that handles the parsing and storage 
@@ -128,7 +126,7 @@ class TescoParser:
             # change the Series of DataFrames to a list of dataframes which then works well with pd.concat.
             prod_df = pd.concat(list(df["product_df"]), 
                 keys=list(df["trip_key"]),                     # use the keys to pass through the index for the trip to maintain referencial integrity
-                names=["trip", "Item"]).reset_index()            # name the indexs and reset index so that it pushes into columns.
+                names=["trip_key", "Item"]).reset_index()            # name the indexs and reset index so that it pushes into columns.
             
             #then lats stick this onto the products stack.
             products = pd.concat([products, prod_df])
